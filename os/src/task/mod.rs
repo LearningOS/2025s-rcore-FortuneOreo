@@ -135,6 +135,16 @@ impl TaskManager {
             panic!("All applications completed!");
         }
     }
+
+    fn get_id_of_current_task(&self) -> usize {
+        let inner = self.inner.exclusive_access();
+        inner.current_task
+    }
+}
+
+/// Get the id of current task
+pub fn get_id_of_current_task() -> usize {
+    TASK_MANAGER.get_id_of_current_task()
 }
 
 /// Run the first task in task list.
